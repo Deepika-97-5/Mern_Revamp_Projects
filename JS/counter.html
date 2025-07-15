@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+</head>
+<body>
+    <div class="flex justify-center items-center h-screen ">
+    <div class="flex flex-col justify-center items-center gap-2">
+        <h1 class="text-2xl text-center" >counter</h1>
+        <p class="text-center" id="count">0</p>
+        <div class="flex gap-4">
+            <button class="border-2 border-black py-2 px-6 rounded-lg" id="dec">Decrease</button>
+            <button class="border-2 border-black py-2 px-6 rounded-lg" id="res">Reset</button>
+            <button class="border-2 border-black px-6 rounded-lg" id="inc">Increase</button>
+        </div>
+        
+        </div>
+    </div>
+    <script>
+        var count = document.getElementById("count");
+        console.dir(count);
+        var inc = document.getElementById("inc");
+        console.dir(inc);
+        var  res = document.getElementById("res");
+        console.dir(res);
+        var des = document.getElementById("des");
+        console.dir(des);
+
+        function updatecolor(){
+            var value = parseInt(count.innerHTML);
+
+            if (value < 0){
+                count.style.color = "red" ;
+            }else if(value > 0){
+                count.style.color = "green" ;
+            }else{
+                count.style.color = "black" ;
+            }
+            console.log(value);
+        }
+
+
+        inc.addEventListener("click", ()=>{
+            count.innerHTML=parseInt(count.innerHTML)+1;
+            updatecolor();
+        });
+
+        res.addEventListener("click", ()=>{
+            count.innerHTML=0;
+            updatecolor();
+        });
+
+        dec.addEventListener("click", ()=>{
+            count.innerHTML=parseInt(count.innerHTML)-1;
+            updatecolor();
+        });
+            
+
+    
+    </script>
+    
+</body>
+</html>

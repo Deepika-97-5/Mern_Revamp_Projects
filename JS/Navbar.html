@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <titlt>Navbar</titlt>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="2xl:container max-auto">
+        <div class = "width-[90%],mx-auto grid grid-cols-1 md:grid-cols-2">
+
+            <div class="bg-red-400 flex py-4 justify-between">
+                <h1>logo</h1>
+
+                <div class="flex ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     class="lucide lucide-menu-icon lucide-menu block md:hidden" id="menuIcon">
+                        <path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+                        class="lucide lucide-x-icon lucide-x hidden md:hidden" id="crossIcon">
+                            <path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </div>
+            </div>
+
+            <div class="bg-green-400 py-4 hidden md:block "id="navItems" >
+                <ul class="flex md:flex-row md:justify-end gap-4 flex-col items-center">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        var menuIcon = document.getElementById("menuIcon");
+        var crossIcon = document.getElementById("crossIcon");
+        var navItems = document.getElementById("navItems");
+
+        menuIcon.addEventListener("click",()=>{
+            console.dir(navItems);
+             navItems.classList.remove("hidden"); 
+             crossIcon.classList.remove("hidden");
+             menuIcon.classList.add("hidden");
+        });
+
+         var menuIcon = document.getElementById("menuIcon");
+        var crossIcon = document.getElementById("crossIcon");
+        var navItems = document.getElementById("navItems");
+
+        crossIcon.addEventListener("click",()=>{
+            console.dir(navItems);
+             navItems.classList.add("hidden"); 
+             crossIcon.classList.add("hidden");
+             menuIcon.classList.remove("hidden");
+        });
+
+
+
+    </script>
+    
+</body>
+</html>
