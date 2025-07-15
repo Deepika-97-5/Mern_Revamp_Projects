@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="2xl:container mx-auto bg-black">
+        <div class="w-[90%] mx-auto flex justify-center items-center h-screen ">
+            <div class="flex flex-col gap-2 bg-green-800 border-2 border-white py-3 px-3">
+            <h1 class="text-center text-[30px] font-bold">Login</h1>
+            <hr>
+            <form class="flex flex-col gap-2" id="form">
+                <div class="flex flex-col gap-1>"
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" id="email" 
+                    class="border-2 outline-none border-black py-2 px-3 w-full" required/>
+                    <p id="emailErr" class=" text-sm text-red-500 text-wrap"></p>
+                </div>
+
+                 <div class="flex flex-col gap-1">
+                    <label for="password">Password:</label>
+                    <input type="password" name="Password" id="password" 
+                    class=" border-black border-2 py-2 px-3 w-full" required/>
+                    <p id="passErr" class=" text-sm text-red-500 text-wrap"></p>
+                </div>
+                <div>
+                    <button class="bg-black py-3 px-6 rounded-lg text-white w-full border-black border-2">Submit</button>
+                </div>
+                
+                
+                
+
+            </form>
+            </div>
+
+            
+            
+        </div>
+
+    </div>
+
+    <script>
+
+        var form = document.getElementById("form");
+        var email = document.getElementById("email");
+        var  password = document.getElementById("password");
+        var passErr = document.getElementById("passErr");
+        var emailErr = document.getElementById("emailErr");
+
+         var emailRegx = /^\S+@\S+\.\S+$/;
+
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+            advanceValidation(email.value,password.value)
+        
+        });
+
+        // Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyA3tNuBq-285KdPE1XBvNlydPA9qX3ssYI",
+  authDomain: "mern-project-3f938.firebaseapp.com",
+  databaseURL: "https://mern-project-3f938-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "mern-project-3f938",
+  storageBucket: "mern-project-3f938.firebasestorage.app",
+  messagingSenderId: "477718351147",
+  appId: "1:477718351147:web:3bd5ee719a598b4f76496e"
+};
+
+
+            
+        email.addEventListener("input" , (e)=>{
+            
+
+             if(e.target.value===""){
+                emailErr.innerHTML = "Required";
+             }else if (!e.target.value.match(emailRegx)){
+                emailErr.innerHTML = "email must in this format coding@gmail.com";
+             }else{
+                emailErr.innerHTML = "";
+
+             }
+
+
+
+        });
+
+        function advanceValidation(email,password){
+            var emailRegx = /^\S+@\S+\.\S+$/;
+            var passRegx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+            if(!email.match(emailRegx)){
+                emailErr.innerHTML = "invalid email format"
+            }else{
+                emailErr.innerHTML = "" ;
+            }
+            
+
+            if(!password.match(passRegx)){
+                passErr.innerHTML = "invalid password format";
+                
+
+            }else{
+                passErr.innerHTML = "";
+                
+            }
+
+        }
+    </script>
+            
+    
+
+</body>
+</html>
