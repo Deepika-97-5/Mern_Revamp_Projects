@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!--FireBase SDK-->
+<!--FireBase SDK-->
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body>
     <div class="2xl:container mx-auto bg-black">
@@ -54,20 +61,41 @@
 
         form.addEventListener("submit",(e)=>{
             e.preventDefault();
-            advanceValidation(email.value,password.value)
+           const isvalid = advanceValidation(email.value,password.value);
+            
+            if(isvalid){
+            saveData(email.value,password.value);
+            console.log("Data is sent");
+            }
         
         });
 
+        function saveData(email,pass){
+
+        
+
         // Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyA3tNuBq-285KdPE1XBvNlydPA9qX3ssYI",
-  authDomain: "mern-project-3f938.firebaseapp.com",
-  databaseURL: "https://mern-project-3f938-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "mern-project-3f938",
-  storageBucket: "mern-project-3f938.firebasestorage.app",
-  messagingSenderId: "477718351147",
-  appId: "1:477718351147:web:3bd5ee719a598b4f76496e"
-};
+        const firebaseConfig = {
+         apiKey: "AIzaSyA3tNuBq-285KdPE1XBvNlydPA9qX3ssYI",
+        authDomain: "mern-project-3f938.firebaseapp.com",
+        databaseURL: "https://mern-project-3f938-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "mern-project-3f938",
+        storageBucket: "mern-project-3f938.firebasestorage.app",
+         messagingSenderId: "477718351147",
+         appId: "1:477718351147:web:3bd5ee719a598b4f76496e"
+            };
+
+        firebase.initializeApp(firebaseConfig);
+
+        const db = firebase.database().ref("ReqForm");
+
+        db.push({
+         email: email,
+        password: pass,
+        
+        });
+
+    }
 
 
             
@@ -90,8 +118,10 @@ const firebaseConfig = {
         function advanceValidation(email,password){
             var emailRegx = /^\S+@\S+\.\S+$/;
             var passRegx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+            let isvalid = true;
             if(!email.match(emailRegx)){
                 emailErr.innerHTML = "invalid email format"
+                isvalid = false;
             }else{
                 emailErr.innerHTML = "" ;
             }
@@ -99,12 +129,19 @@ const firebaseConfig = {
 
             if(!password.match(passRegx)){
                 passErr.innerHTML = "invalid password format";
-                
+                isvalid = false;
 
-            }else{
-                passErr.innerHTML = "";
+            }
+            if(isvalid){
+                alert("login sucessfull");
+                setTimeout(()=>{
+                  form.reset();  
+                },1000);
+                
                 
             }
+
+            return isvalid;
 
         }
     </script>
