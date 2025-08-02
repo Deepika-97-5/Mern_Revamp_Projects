@@ -47,7 +47,8 @@ const ProductLayout = () => {
         data.map((items)=>{
           return (
             <>
-                <ProductCard productImage={items.thumbnail} 
+                <ProductCard productId={items.id}
+      productImage={items.thumbnail} 
       productoffer={items.discountPercentage} 
       productTitle={items.title} rating={items.rating} 
       productRatingReview={items.stock} productPrice={items.price}/>

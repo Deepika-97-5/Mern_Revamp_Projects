@@ -4,6 +4,8 @@ import Home from "../Pages/HomePage";
 import About from "../Pages/About";
 import ErrorPage from "../Pages/ErrorPage";
 import ProductLayout from "../Components/ProductLayout";
+import ProductDetail from "../Components/productDetail";
+import Contact from "../Components/Contact";
 
 const ContactPage= () =>{
     return(
@@ -44,8 +46,14 @@ const router = createBrowserRouter([
           } ,
 
           {
+              path: "/products/:id",
+              element: <ProductDetail/>  
+            
+          },
+
+          {
               path:"/contact",
-              element:<ContactPage/>
+              element:<Contact/>
           },
 
           {
