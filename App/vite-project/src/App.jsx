@@ -3,6 +3,7 @@ import HeroSection from "./pages/HeroSection/HeroSection";
 import HeaderSection from "./pages/HeaderSection/HeaderSection";
 import Card from "./pages/Card/Card";
 import Footer from "./pages/Footer/Footer";
+import { useEffect } from "react";
 
 
 const App = () => {
