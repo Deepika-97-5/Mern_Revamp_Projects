@@ -3,24 +3,15 @@ import AppLayout from "./Layout";
 import Home from "../Pages/HomePage";
 import About from "../Pages/About";
 import ErrorPage from "../Pages/ErrorPage";
-import ProductLayout from "../Components/ProductLayout";
+import ProductLayout from "../Components/ProductLayout"
 import ProductDetail from "../Components/productDetail";
-import Contact from "../Components/Contact";
+import Contact from "../Pages/Contact";
+import ImageCard from "../Components/ImageCard";
+import Cart from "../Pages/Cart"
 
-const ContactPage= () =>{
-    return(
-        <>
-        
-        </>
-    )
-}
 
-const Cart = () =>{
-    return(
-        <>
-        </>
-    )
-}
+
+
 
 const router = createBrowserRouter([
 
@@ -59,6 +50,11 @@ const router = createBrowserRouter([
           {
               path:"/cart",
               element:<Cart/>
+          },
+
+          {
+              path:"/image-component",
+              element:<ImageCard/>
           }
 
           

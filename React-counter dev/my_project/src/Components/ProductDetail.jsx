@@ -1,33 +1,9 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import useProductDetail from "../hooks/useProductDetail";
 
 const ProductDetail = () => {
     const { id } = useParams();
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [selectedImage, setSelectedImage] = useState(0);
-
-    useEffect(() => {
-        fetchProductData();
-    }, [id]);
-
-    const fetchProductData = async () => {
-        try {
-            setLoading(true);
-            const response = await fetch(`https://dummyjson.com/products/${id}`);
-            if (!response.ok) {
-                throw new Error('Product not found');
-            }
-            const data = await response.json();
-            setProduct(data);
-            setLoading(false);
-        } catch (err) {
-            console.error(err);
-            setError(err.message);
-            setLoading(false);
-        }
-    };
+    const { product, loading, error, selectedImage, setSelectedImage } = useProductDetail(id);
 
     // Custom shimmer component
     const ProductDetailShimmer = () => (

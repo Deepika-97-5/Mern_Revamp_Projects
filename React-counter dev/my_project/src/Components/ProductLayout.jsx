@@ -1,34 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { ShimmerPostList } from "react-shimmer-effects";
+import useProduct from "../hooks/useProduct";
 
 
 
 const ProductLayout = () => {
-
-  const [data,setData] = useState([]);
-  const[loading,setLoading] = useState(false);
-
-  useEffect(()=>{
-    fetchData();
-  },[]);
-
-  console.log(data)
-
-  const fetchData = async () =>{
-    try{
-    
-    setLoading(true);
-    const res = await fetch("https://dummyjson.com/products");
-    const data = await res.json();
-
-    setData(data.products);
-    setLoading(false);
-
-    }catch(err){
-      console.log(err);
-    }
-  };
+      const {data,loading} = useProduct()
+ 
       if(loading){
         return <ShimmerPostList postStyle="STYLE_FOUR" col={3} row={2} gap={30} />;
 
