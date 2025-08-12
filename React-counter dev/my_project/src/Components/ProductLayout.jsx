@@ -5,8 +5,30 @@ import useProduct from "../hooks/useProduct";
 
 
 
+
+
 const ProductLayout = () => {
       const {data,loading} = useProduct()
+
+      const productWithBrand = (Component) => {
+        
+        const EnhancedComponent = (Props) => {
+          return(
+            <div className="relative">
+                 {Props.brand?(<p className="absolute top-0 left-0 mt-5 mx-5 p-2 bg-blue-200 text-white">
+                    {Props.brand}</p>
+                 ):(
+                  ""
+                 )}
+                  <Component {...Props} />
+            </div>
+          )
+        }
+        
+        return EnhancedComponent;
+      };
+
+      const ProductWithBrandWrapper = productWithBrand(ProductCard)
  
       if(loading){
         return <ShimmerPostList postStyle="STYLE_FOUR" col={3} row={2} gap={30} />;
@@ -26,7 +48,9 @@ const ProductLayout = () => {
         data.map((items)=>{
           return (
             <>
-                <ProductCard productId={items.id}
+                <ProductWithBrandWrapper
+                brand={items.brand}
+                productId={items.id}
       productImage={items.thumbnail} 
       productoffer={items.discountPercentage} 
       productTitle={items.title} rating={items.rating} 
