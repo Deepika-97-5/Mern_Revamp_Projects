@@ -1,0 +1,15 @@
+{
+  "name": "backend-cal-deepika",
+  "version": "2.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "backend-cal-deepika": "^2.0.0"
+  }
+}
